@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Roblox Tax Calculator</title>
+    <style>
+        @font-face {
+            font-family: heavitas;
+            src: url("heavitas.ttf");
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: heavitas;
+            background-color: #222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .calculator {
+            background-color: #333;
+            font-family: heavitas;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 1rem;
+            margin-bottom: 5px;
+            display: block;
+            color: white;
+        }
+
+        input[type="number"] {
+            font-family: heavitas;
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            font-family: heavitas;
+            width: 100%;
+            padding: 10px;
+            background-color: #555;
+            color: #fff;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: transform, background-color, 0.1s ease;
+        }
+
+        button:hover {
+            background-color: #444;
+            transform: scale(1.025);
+        }
+
+        .output {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .calculator {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <h1>roblox tax calculator</h1>
+        <div class="input-group">
+            <label for="amount">enter amount (robux)</label>
+            <input type="number" id="amount" placeholder="enter robux amount">
+        </div>
+        <button onclick="calculateTax()">calculate amount after tax</button>
+        <div class="output" id="result"></div>
+    </div>
+
+    <footer>
+        &copy; <span id="year"></span> unfazd.
+    </footer>
+
+    <script>
+        function calculateTax() {
+            const amount = document.getElementById('amount').value;
+            const taxRate = 0.30; // 30% Roblox tax
+            const afterTax = amount - (amount * taxRate);
+            const roundedAmount = Math.round(afterTax);
+            document.getElementById('result').innerHTML = `after tax, you will receive: ${roundedAmount} robux.`;
+        }
+
+        // Automatically update the year in the footer
+        const yearSpan = document.getElementById('year');
+        const currentYear = new Date().getFullYear();
+        yearSpan.textContent = currentYear;
+    </script>
+
+</body>
+</html>
